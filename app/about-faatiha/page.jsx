@@ -5,5 +5,6 @@ export default function page() {
     <div>
       <h1>this the page about fatiha ayat</h1>
     </div>
+
   )
 }
