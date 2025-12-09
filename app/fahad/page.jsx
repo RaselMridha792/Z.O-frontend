@@ -1,7 +1,9 @@
 import React from 'react'
 
-export default function faq_page() {
+export default function faqPage() {
   return (
-    <div></div>
+    <div>
+      FAHAD
+    </div>
   )
 }
