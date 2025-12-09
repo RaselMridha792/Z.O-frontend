@@ -1,7 +1,7 @@
 import React from 'react'
 
-export default function page() {
+export default function faq_page() {
   return (
-    <div>Fahad</div>
+    <div></div>
   )
 }
