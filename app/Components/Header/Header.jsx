@@ -8,7 +8,7 @@ import Image from "next/image";
 
 const navItems = [
     { title: "Home", url: "/" },
-    { title: "About Us", url: "/about" },
+    { title: "About Us", url: "/about-us" },
     { title: "Leaderboard", url: "/leaderboard" },
     { title: "FAQ", url: "/faq" },
     { title: "Contact Us", url: "/contact-us" },
