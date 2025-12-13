@@ -8,8 +8,8 @@ import LogoFooter from "../../../public/src/SiteLogo.png";
 
 export default function Footer() {
     return (
-        <footer className="bg-[#F4F4F4] text-black mt-10">
-            <div className="container mx-auto px-5 lg:px-4 py-12 lg:py-16">
+        <footer className="bg-[#F4F4F4] text-black px-5 ">
+            <div className="container max-w-7xl mx-auto  lg:px-4 py-12 lg:py-16">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
 
                     {/* Brand Section */}
@@ -42,10 +42,10 @@ export default function Footer() {
                         <ul className="space-y-3 text-lg">
                             {[
                                 { name: "Home", path: "/" },
-                                { name: "About Us", path: "/about-us" },
+                                { name: "About Us", path: "/about" },
                                 { name: "Contact Us", path: "/contact-us" },
-                                { name: "Privacy Policy", path: "/privacy" },
-                                { name: "Terms & Conditions", path: "/terms" },
+                                { name: "Privacy Policy", path: "/privacyPolicy" },
+                                { name: "Terms & Conditions", path: "/tramsAndCondition" },
                             ].map((link) => (
                                 <li key={link.name}>
                                     <Link
@@ -135,13 +135,13 @@ export default function Footer() {
 
                         <div className="flex items-center gap-6 text-lg">
                             <Link
-                                href="/privacy"
+                                href="/privacyPolicy"
                                 className="text-black/60 hover:text-primary transition-colors"
                             >
                                 Privacy
                             </Link>
                             <Link
-                                href="/terms"
+                                href="/tramsAndCondition"
                                 className="text-black/60 hover:text-primary transition-colors"
                             >
                                 Terms

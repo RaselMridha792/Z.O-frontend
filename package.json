@@ -9,10 +9,10 @@
     "lint": "eslint"
   },
   "dependencies": {
-    "autoprefixer": "^10.4.22",
     "daisyui": "^5.5.8",
-    "next": "16.0.7",
-    "postcss": "^8.5.6",
+    "lottie-react": "^2.4.1",
+    "motion": "^12.23.26",
+    "next": "^16.0.10",
     "react": "19.2.0",
     "react-dom": "19.2.0",
     "react-hook-form": "^7.68.0",
@@ -20,10 +20,12 @@
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.1.17",
+    "autoprefixer": "^10.4.22",
     "babel-plugin-react-compiler": "1.0.0",
     "eslint": "^9",
     "eslint-config-next": "16.0.7",
-    "tailwindcss": "^4.1.17"
+    "postcss": "^8.5.6",
+    "tailwindcss": "^4.1.18"
   },
   "browserslist": "> 1%"
 }
