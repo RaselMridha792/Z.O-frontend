@@ -42,10 +42,10 @@ export default function RoundStatusCard({
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class="lucide lucide-circle-check-big w-3 h-3 mr-1"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="lucide lucide-circle-check-big w-3 h-3 mr-1"
             >
               <path d="M21.801 10A10 10 0 1 1 17 3.335"></path>
               <path d="m9 11 3 3L22 4"></path>
@@ -68,10 +68,10 @@ export default function RoundStatusCard({
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class="lucide lucide-lock w-3 h-3 mr-1"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="lucide lucide-lock w-3 h-3 mr-1"
             >
               <rect width="18" height="11" x="3" y="11" rx="2" ry="2"></rect>
               <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
