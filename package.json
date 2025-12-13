@@ -9,6 +9,7 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.87.1",
     "daisyui": "^5.5.8",
     "lottie-react": "^2.4.1",
     "motion": "^12.23.26",
