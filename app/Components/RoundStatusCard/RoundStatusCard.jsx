@@ -9,7 +9,7 @@ export default function RoundStatusCard({
 }) {
   return (
     <div className="relative overflow-hidden border-l-2 lg:border-l-[6px] border border-blue-200 border-l-blue-600 bg-white py-8 px-6 shadow-md rounded-xl">
-      <div className="flex items-center justify-between">
+      <div className="md:flex items-center justify-between">
         <div className="space-y-3">
           <h3 className="text-xl font-semibold text-black">{title}</h3>
 
