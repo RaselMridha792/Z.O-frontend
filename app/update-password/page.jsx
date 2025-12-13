@@ -1,11 +1,9 @@
 "use client";
 import React, { useState, useEffect } from 'react';
-// import { useSearchParams, useRouter } from 'next/navigation'; // ✨ পরিবর্তন: useSearchParams আর প্রয়োজন নেই
 import { useRouter } from 'next/navigation'; 
 import { supabase } from '@/lib/supabaseClient'; 
 
 export default function UpdatePasswordPage() {
-    // const searchParams = useSearchParams(); // ✨ পরিবর্তন: এটি বাদ দেওয়া হলো
     const router = useRouter(); 
     
     const [password, setPassword] = useState('');
@@ -13,11 +11,10 @@ export default function UpdatePasswordPage() {
     const [error, setError] = useState('');
     const [message, setMessage] = useState('');
     const [loading, setLoading] = useState(false);
-    const [tokenReceived, setTokenReceived] = useState(false); // ফর্ম দেখানোর জন্য ব্যবহৃত স্টেট
-    const [pageInitialized, setPageInitialized] = useState(false); // ✨ নতুন: পেইজ লোড হয়েছে কিনা বোঝার জন্য
+    const [tokenReceived, setTokenReceived] = useState(false); 
+    const [pageInitialized, setPageInitialized] = useState(false);
 
     const updatePasswordWithToken = async (newPassword) => {
-        // এই ফাংশনটি তখনই কাজ করবে যখন Supabase টোকেন পেয়ে ইউজারকে সেশন রিকভার করে দেবে।
         const { data, error } = await supabase.auth.updateUser({ 
             password: newPassword 
         });
@@ -30,36 +27,29 @@ export default function UpdatePasswordPage() {
 
 
     useEffect(() => {
-        // ✨ পরিবর্তন: window.location.hash ব্যবহার করে টোকেন এক্সট্র্যাক্ট করা
         if (typeof window !== 'undefined') {
-            const hash = window.location.hash; // #access_token=... এই স্ট্রিংটি নেবে
+            const hash = window.location.hash;
             
             if (hash) {
-                const params = new URLSearchParams(hash.substring(1)); // # বাদ দিয়ে প্যারামিটার পার্স করা
+                const params = new URLSearchParams(hash.substring(1));
                 const token = params.get('access_token');
                 
                 if (token) {
-                    // টোকেন পেলে Supabase অটোমেটিক সেশন সেট করে দেয়।
-                    // আমরা শুধু টোকেন পেলাম কিনা তা চেক করছি।
                     setTokenReceived(true);
                     setMessage("আপনার অ্যাকাউন্ট যাচাই করা হয়েছে। নতুন পাসওয়ার্ড সেট করুন।");
                 } else {
-                    // টোকেন না থাকলে বা ভুল থাকলে
                     setTokenReceived(false);
                     setError("ত্রুটি: পাসওয়ার্ড রিসেট টোকেন পাওয়া যায়নি বা মেয়াদ উত্তীর্ণ হয়েছে।");
                 }
             } else {
-                // কোনো হ্যাশ প্যারামিটার না থাকলে
                 setTokenReceived(false);
                 setError("ত্রুটি: পাসওয়ার্ড রিসেট টোকেন পাওয়া যায়নি।");
             }
             
-            setPageInitialized(true); // ✨ পেইজ ইনিশিয়ালাইজড হিসেবে চিহ্নিত করা হলো
+            setPageInitialized(true);
         }
         
-    }, []); // dependency array থেকে searchParams সরানো হলো
-
-    // ✨ পরিবর্তন: পেজ ইনিশিয়ালাইজড না হওয়া পর্যন্ত লোডিং স্টেট দেখাও
+    }, []);
     if (!pageInitialized) {
         return (
             <div className='min-h-screen flex items-center justify-center'>
@@ -79,8 +69,6 @@ export default function UpdatePasswordPage() {
             setLoading(false);
             return;
         }
-        
-        // পাসওয়ার্ড কমপক্ষে 6 অক্ষরের হতে হবে (Supabase এর ডিফল্ট)
         if (password.length < 6) {
              setError('পাসওয়ার্ড কমপক্ষে ৬ অক্ষরের হতে হবে।');
              setLoading(false);
@@ -88,23 +76,17 @@ export default function UpdatePasswordPage() {
         }
 
         try {
-            // যদি টোকেনReceived true হয়, তবে Supabase এর সেশন রিকভার হয়ে গেছে
-            // তাই আমরা সরাসরি updateUser ব্যবহার করতে পারি।
             await updatePasswordWithToken(password); 
             
             setMessage('পাসওয়ার্ড সফলভাবে আপডেট করা হয়েছে! এখন আপনি লগইন করতে পারেন।');
             setPassword('');
             setConfirmPassword('');
-            
-            // সফলভাবে আপডেট হওয়ার পর লগইন পেজে রিডাইরেক্ট
-            // ৫ সেকেন্ড অপেক্ষা করার জন্য setTimeout ব্যবহার করা হলো
             setTimeout(() => {
                 router.push('/login'); 
             }, 2000); 
             
 
         } catch (err) {
-            // error.message-এ যদি "user is not signed in" থাকে, তার মানে সেশন রিকভার হয়নি।
             setError(err.message || 'পাসওয়ার্ড আপডেট করার সময় একটি ত্রুটি হয়েছে।');
         } finally {
             setLoading(false);
@@ -121,7 +103,7 @@ export default function UpdatePasswordPage() {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder="কমপক্ষে ৬ অক্ষরের পাসওয়ার্ড"
-                    minLength={6} // সর্বনিম্ন ৬ অক্ষর সেট করা হলো
+                    minLength={6}
                     required
                 />
             </div>
@@ -163,8 +145,6 @@ export default function UpdatePasswordPage() {
                 
                 {error && <div className="p-3 text-sm text-red-700 bg-red-100 rounded-lg">{error}</div>}
                 {message && <div className="p-3 text-sm text-green-700 bg-green-100 rounded-lg">{message}</div>}
-
-                {/* টোকেন পেলে ফর্ম দেখাও, অন্যথায় মেসেজ দেখাও */}
                 {tokenReceived ? (
                     renderForm()
                 ) : (
