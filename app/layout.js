@@ -23,15 +23,18 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" data-theme="light">
       <body
-
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <Header></Header>
+<<<<<<< HEAD
         <main className="min-h-screen mx-auto ">
           <ReduxProvider>
             {children}
           </ReduxProvider>
         </main>
+=======
+        <main className="min-h-screen mx-auto ">{children}</main>
+>>>>>>> bd4c452e266031866d0ec39c6d3aa4e91d1a9d80
         <Footer></Footer>
       </body>
     </html>
