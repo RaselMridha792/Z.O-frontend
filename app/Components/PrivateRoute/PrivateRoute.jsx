@@ -7,7 +7,7 @@ const PrivateRoute = ({ children }) => {
   const router = useRouter();
 
   if (!isAuthenticated) {
-    router.push('/api/auth/login'); 
+    router.push('/login'); 
     return null; 
   }
 
