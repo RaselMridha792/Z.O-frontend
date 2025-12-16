@@ -18,7 +18,7 @@ const Slide = ({ title, image, text }) => {
           <h1 className="text-lg  text-gray-200 lg:text-xl">{text}</h1>
           <br />
           <Link
-            href="/all-visas"
+            hrefInstructions="/all-visas"
             className="w-20 px-5 py-4  mt-4 text-sm font-medium text-white capitalize transition-colors duration-300 transform  opacity-60 rounded-md lg:w-auto focus:outline-none btn-outline bg-blue-600 hover:bg-blue-600"
           >
             explore all visa

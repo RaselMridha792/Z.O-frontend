@@ -96,7 +96,7 @@ export default function WhyChooseUs() {
       <div className="container mx-auto px-5 lg:px-20 max-w-screen-7xl flex flex-col lg:flex-row items-center justify-between space-y-8 lg:space-y-0  border-rose-800 gap-10">
         {/* Right Content (Video Section) */}
         <div className="w-full lg:w-1/2">
-          <div className="relative w-full h-0 pb-[75.75%]">
+          <div className="relative w-full h-0 pb-[50.75%] lg:pb-[75.75%]">
             <iframe
               className="absolute inset-0 w-full h-full rounded-lg"
               src="https://www.youtube.com/embed/tEiJtCnmjQ4?si=8ompfwNgfh5iYjo2"
