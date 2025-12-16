@@ -3,6 +3,7 @@ import "./globals.css";
 import Header from "./Components/Header/Header";
 import Footer from "./Components/Footer/Footer";
 import ReduxProvider from "./store/ReduxProvider";
+import ValuedPartners from "./Components/ValuedPartners/ValuedPartners";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,6 +32,7 @@ export default function RootLayout({ children }) {
             {children}
           </ReduxProvider>
         </main>
+        <ValuedPartners></ValuedPartners>
         <Footer></Footer>
       </body>
     </html>
