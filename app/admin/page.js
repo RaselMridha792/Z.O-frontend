@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 "use client"
 
 import { useState } from "react"
@@ -49,3 +50,10 @@ export default function DashboardPage() {
     </div>
   )
 }
+=======
+import DashboardHome from "./adminHome/DashboardHome"
+
+export default function AdminDashboardHomePage() {
+  return <DashboardHome />
+}
+>>>>>>> e1f1304801e49a4133f5696a679f1f2feecce08f
