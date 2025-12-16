@@ -102,20 +102,6 @@ export default function LiveLeaderboard() {
     return sortedStudents.slice(0, 3)
   }, [sortedStudents])
 
-<<<<<<< HEAD
-  // Pagination
-  const totalPages = Math.ceil(filteredStudents.length / studentsPerPage)
-  const startIndex = (currentPage - 1) * studentsPerPage
-  const paginatedStudents = filteredStudents.slice(
-    startIndex,
-    startIndex + studentsPerPage
-  )
-
-  // Rank
-  const getStudentRank = (id) => {
-    return sortedStudents.findIndex((s) => s.id === id) + 1
-  }
-=======
 
   // ===== TABLE STUDENTS (TOP 3 বাদ দিয়ে) =====
 const tableStudents = useMemo(() => {
@@ -137,7 +123,6 @@ const paginatedStudents = tableStudents.slice(
 )
 
 
->>>>>>> e1f1304801e49a4133f5696a679f1f2feecce08f
 
   if (loading) {
     return (
@@ -288,17 +273,11 @@ const paginatedStudents = tableStudents.slice(
         </tr>
       </thead>
 
-<<<<<<< HEAD
-      <tbody>
-        {paginatedStudents.map((s) => {
-          const rank = getStudentRank(s.id)
-=======
 
           <tbody>
   {paginatedStudents.map((s, index) => {
     const rank = startIndex + index + 4
 
->>>>>>> e1f1304801e49a4133f5696a679f1f2feecce08f
 
           return (
             <tr

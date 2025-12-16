@@ -1,14 +1,3 @@
-<<<<<<< HEAD
-import React from 'react'
-
-export default function AdminLaout({children }) {
-  return (
-    <div>
-        {children}
-        </div>
-  )
-}
-=======
 
 
 "use client"
@@ -42,4 +31,3 @@ export default function AdminLayout({ children }) {
     </div>
   )
 }
->>>>>>> e1f1304801e49a4133f5696a679f1f2feecce08f
