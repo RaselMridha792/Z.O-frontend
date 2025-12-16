@@ -5,7 +5,7 @@
 
 import { useEffect, useMemo, useState } from "react"
 
-export default function StudentManagement() {
+export default function page() {
   const [students, setStudents] = useState([])
   const [loading, setLoading] = useState(true)
 
