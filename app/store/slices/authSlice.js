@@ -29,7 +29,7 @@ const authSlice = createSlice({
             state.user = null;
             state.isLoggedIn = false;
             state.loading = false;
-            localStorage.removeItem("sb-access-token");
+            localStorage.removeItem("access_token");
         },
         setLogin: (state, action) => {
             state.user = action.payload.user;

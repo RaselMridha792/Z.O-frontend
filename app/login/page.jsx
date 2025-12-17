@@ -43,10 +43,13 @@ export default function LoginPage() {
 
             if (res.ok && data.session) {
                 const token = data.session.access_token;
+                const user = data.user;
                 localStorage.setItem("access_token", token);
-                
-                console.log("Login successful! Redirecting to dashboard."); 
+
+                dispatch(setLogin({ user }));
+                console.log("Login successful!"); 
                 router.push("/dashboard"); 
+
 
             } else {
                 setError(data.message || "Login failed. Please check your credentials.");

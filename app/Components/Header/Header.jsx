@@ -6,6 +6,7 @@ import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
 import logo from "../../../public/src/SiteLogo.png";
 import Image from "next/image";
 import { FaSignInAlt, FaUserPlus } from "react-icons/fa";
+import { useSelector } from "react-redux";
 
 const navItems = [
   { title: "Home", url: "/" },
@@ -17,6 +18,15 @@ const navItems = [
 
 export default function Header() {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    
+    // // রিডাক্স স্টেট থেকে ডাটা নিচ্ছি
+    const authState = useSelector((state) => state.auth);
+    const { user = null, isLoggedIn = false, loading = true } = authState || {};
+
+    // // ব্রাউজার কনসোলে ডাটা চেক করার জন্য
+    console.log("Is Authenticated:", isLoggedIn);
+    console.log("User Profile Data:", user);
+    console.log("Loading State:", loading);
 
     const toggleMobileMenu = () => {
         setIsMobileMenuOpen(!isMobileMenuOpen);
