@@ -141,7 +141,7 @@ export default function LoginPage() {
               {loading ? "Logging in..." : "Login"}
             </button>
             <p className="mt-2 text-center">
-              If you Don't Have Any Account!{" "}
+              If you Don`t Have Any Account!{" "}
               <Link
                 href="/registration"
                 className="underline cursor-pointer text-indigo-700 hover:text-indigo-600 font-bold"

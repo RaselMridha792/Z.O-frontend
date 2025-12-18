@@ -20,11 +20,13 @@ export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const authState = useSelector((state) => state.user);
-  const { user = null, isLoggedIn = false, loading = true } = authState || {};
+  // const { user = null, isLoggedIn = false, loading = true } = authState || {};
 
-  console.log("Is Authenticated:", isLoggedIn);
-  console.log("User Profile Data:", user);
-  console.log("Loading State:", loading);
+  // console.log("Is Authenticated:", isLoggedIn);
+  // console.log("User Profile Data:", user);
+  // console.log("Loading State:", loading);
+  const user = false;
+  console.log("user", user);
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -82,20 +84,23 @@ export default function Header() {
             </div>
 
             {/* Desktop Buttons */}
-            <div className="hidden lg:flex items-center gap-4">
-              <Link
-                href={"/login"}
-                className="px-5 py-1.5 flex justify-center items-center gap-2 text-lg text-gray-800 font-bold border border-primary rounded-sm hover:bg-primary hover:text-white transition-all"
-              >
-                <FaSignInAlt size={18} /> Login
-              </Link>
-              <Link
-                href={"/registration"}
-                className="px-5 py-1.5 text-lg flex justify-center items-center gap-2 text-white font-bold border border-primary rounded-sm bg-primary hover:bg-white hover:text-primary transition-all"
-              >
-                <FaUserPlus size={18} /> Register
-              </Link>
-            </div>
+            {user && (
+              <div className="hidden lg:flex items-center gap-4">
+                <Link
+                  href={"/login"}
+                  className="px-5 py-1.5 flex justify-center items-center gap-2 text-lg text-gray-800 font-bold border border-primary rounded-sm hover:bg-primary hover:text-white transition-all"
+                >
+                  <FaSignInAlt size={18} /> Login
+                </Link>
+                <Link
+                  href={"/registration"}
+                  className="px-5 py-1.5 text-lg flex justify-center items-center gap-2 text-white font-bold border border-primary rounded-sm bg-primary hover:bg-white hover:text-primary transition-all"
+                >
+                  <FaUserPlus size={18} /> Register
+                </Link>
+              </div>
+            )}
+            {!user && <div>hello</div>}
           </div>
         </div>
 
