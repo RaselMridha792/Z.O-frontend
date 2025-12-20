@@ -26,7 +26,7 @@ export default function ProfileModal({ isOpen, onClose }) {
   if (!isOpen) return null;
 
   return (
-    <div className="absolute right-0 top-full mt-1 z-50">
+    <div className="absolute md:right-5 lg:right-0 top-full mt-1 z-50">
       <div
         ref={modalRef}
         className="w-72 rounded-2xl border border-purple-600/40 bg-gradient-to-b from-[#1a0b2e] to-[#0b0418] p-4 shadow-2xl"

@@ -88,7 +88,7 @@ export default function Header() {
 
             <div>
               {email ? (
-                <div className="mt-4 flex items-center gap-4 lg:mt-0">
+                <div className="mt-0 flex items-center gap-4 lg:mt-0">
                   {!isProfileOpen && (
                     <button
                       onClick={() => setIsProfileOpen((prev) => !prev)}
