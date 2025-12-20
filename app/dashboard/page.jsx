@@ -3,7 +3,7 @@ import { FaBookOpenReader } from "react-icons/fa6";
 import { LuMonitorPlay } from "react-icons/lu";
 import { LiaCertificateSolid } from "react-icons/lia";
 
-const Dashboard = () => {
+const page = () => {
   const stats = [
     {
       id: 1,
@@ -96,4 +96,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default page;

@@ -86,16 +86,13 @@ const Dashboard = () => {
                 </div>
               </div>
 
-              {/* Right Side: Site Logo with Tailwind-friendly Animation */}
+              {/* Right Side: Site Logo with Circular Rotation Animation */}
               <div className="flex-shrink-0 relative group">
                 <div className="absolute -inset-4 bg-white/20 rounded-full blur-2xl group-hover:bg-white/30 transition duration-700"></div>
 
-                {/* Using a standard inline style for the floating animation 
-                  to avoid modifying tailwind.config.js 
-                */}
                 <div
                   style={{
-                    animation: "float 5s ease-in-out infinite",
+                    animation: "rotateCircular 8s linear infinite",
                   }}
                   className="relative"
                 >
@@ -113,14 +110,15 @@ const Dashboard = () => {
         </div>
       </div>
 
-      {/* Injecting the keyframes via a standard style tag. 
-        This is the most reliable way to keep it in one file 
-        without touching the global config. 
-      */}
+      {/* Modern Circular Rotation Animation Keyframes */}
       <style>{`
-        @keyframes float {
-          0%, 100% { transform: translateY(0px); }
-          50% { transform: translateY(-20px); }
+        @keyframes rotateCircular {
+          from {
+            transform: rotate(0deg) translateX(15px) rotate(0deg);
+          }
+          to {
+            transform: rotate(360deg) translateX(15px) rotate(-360deg);
+          }
         }
       `}</style>
     </section>
