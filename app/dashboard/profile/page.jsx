@@ -31,20 +31,13 @@ const ProfilePage = () => {
       <div className="max-w-4xl mx-auto space-y-6">
         <div className="bg-white p-6 rounded-2xl shadow-sm border border-blue-50 flex flex-col md:flex-row justify-between items-center gap-6">
           <div className="flex items-center gap-6">
-            {/* <Image
-              src={user.profile_image_url || <FaUserCircle size={100}></FaUserCircle>}
-              alt="Profile"
-              width={200}
-              height={200}
-              className="w-24 h-24 rounded-full object-cover border-4 border-blue-100 shadow-sm"
-            /> */}
             {user.profile_image_url ? (
               <Image
                 src={user.profile_image_url}
                 alt="Profile"
-                width={90}
-                height={90}
-                className="w-full h-full object-cover rounded-full"
+                width={300}
+                height={300}
+                className="w-[100px] h-[100px] object-cover  rounded-full"
               />
             ) : (
               <div className="flex h-full items-center justify-center text-gray-400 font-medium">

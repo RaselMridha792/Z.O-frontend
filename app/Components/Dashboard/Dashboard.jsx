@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import { useSelector } from "react-redux";
-import { FaIdCard, FaTrophy, FaGraduationCap } from "react-icons/fa";
+import { FaIdCard, FaTrophy, FaGraduationCap, FaUserCircle } from "react-icons/fa";
 
 // Ensure the path to your logo is correct
 import SiteLogo from "../../../public/src/SiteLogo.png";
@@ -43,17 +43,20 @@ const Dashboard = () => {
                 {/* Profile Detail Card */}
                 <div className="flex flex-col md:flex-row items-center gap-6 p-6 rounded-2xl bg-black/10 backdrop-blur-md border border-white/5 shadow-inner">
                   <div className="relative group">
-                    <div className="absolute -inset-1 bg-gradient-to-r from-yellow-400 to-pink-500 rounded-full blur opacity-40 group-hover:opacity-100 transition duration-500"></div>
-                    <Image
-                      src={
-                        user?.profile_image_url ||
-                        "https://images.unsplash.com/photo-1517841905240-472988babdf9"
-                      }
-                      width={180}
-                      height={180}
-                      alt="User Profile"
-                      className="relative rounded-full border-4 border-white w-28 h-28 lg:w-40 lg:h-40 object-cover shadow-2xl"
-                    />
+                    <div className="absolute -inset-1 from-yellow-400 to-pink-500 rounded-full blur opacity-40 transition duration-500"></div>
+                    {user.profile_image_url ? (
+                      <Image
+                        src={user.profile_image_url}
+                        alt="Profile"
+                        width={300}
+                        height={300}
+                        className="w-[100px] h-[100px] rounded-full object-cover"
+                      />
+                    ) : (
+                      <div className="flex h-full items-center justify-center text-gray-400 font-medium">
+                        <FaUserCircle size={100}></FaUserCircle>
+                      </div>
+                    )}
                   </div>
 
                   <div className="flex-1 space-y-3">
