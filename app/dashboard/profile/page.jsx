@@ -1,27 +1,44 @@
 "use client";
 import { useSelector } from "react-redux";
-import { FaRegEdit, FaUserCircle, FaGraduationCap, FaAward } from "react-icons/fa";
+import {
+  FaRegEdit,
+  FaUserCircle,
+  FaGraduationCap,
+  FaAward,
+} from "react-icons/fa";
 import Link from "next/link";
+import Image from "next/image";
 
 const ProfilePage = () => {
   const { user, loading } = useSelector((state) => state.user);
 
-  if (loading) return <div className="p-10 text-center">Loading Profile...</div>;
-  if (!user) return <div className="p-10 text-center text-red-500">No profile data found. Please login again.</div>;
+  console.log(user, loading);
+  if (loading)
+    return <div className="p-10 text-center">Loading Profile...</div>;
+  if (!user)
+    return (
+      <div className="p-10 text-center text-red-500">
+        No profile data found. Please login again.
+      </div>
+    );
 
   return (
     <main className="p-4 lg:p-10 bg-gray-50 min-h-screen">
       <div className="max-w-4xl mx-auto space-y-6">
         <div className="bg-white p-6 rounded-2xl shadow-sm border border-blue-50 flex flex-col md:flex-row justify-between items-center gap-6">
           <div className="flex items-center gap-6">
-            <img
+            <Image
               src={user.profile_image_url || "https://via.placeholder.com/150"}
               alt="Profile"
+              width={200}
+              height={200}
               className="w-24 h-24 rounded-full object-cover border-4 border-blue-100 shadow-sm"
             />
             <div>
               <h1 className="text-2xl font-bold text-gray-800">{user.name}</h1>
-              <p className="text-blue-600 font-medium">{user.role || "Participant"}</p>
+              <p className="text-blue-600 font-medium">
+                {user.role || "Participant"}
+              </p>
             </div>
           </div>
           <Link href="/dashboard/profile/edit">
@@ -65,14 +82,15 @@ const ProfilePage = () => {
               <ProfileItem label="SDG Role" value={user.sdg_role} />
               <ProfileItem label="Round Type" value={user.round_type} />
               <div className="md:col-span-2 py-2">
-                <h3 className="text-sm font-semibold text-gray-500 mb-1">Activities Role/Interest:</h3>
+                <h3 className="text-sm font-semibold text-gray-500 mb-1">
+                  Activities Role/Interest:
+                </h3>
                 <p className="text-gray-800 bg-gray-50 p-3 rounded-lg italic border-l-4 border-purple-200">
                   {user.activities_role || "No activities specified"}
                 </p>
               </div>
             </div>
           </section>
-
         </div>
       </div>
     </main>
@@ -81,7 +99,9 @@ const ProfilePage = () => {
 
 const ProfileItem = ({ label, value }) => (
   <div className="flex flex-col py-1">
-    <span className="text-xs font-bold text-gray-400 uppercase tracking-wider">{label}</span>
+    <span className="text-xs font-bold text-gray-400 uppercase tracking-wider">
+      {label}
+    </span>
     <span className="text-gray-800 font-medium">{value || "Not Provided"}</span>
   </div>
 );

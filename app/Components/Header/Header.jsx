@@ -18,6 +18,8 @@ const navItems = [
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [isProfileOpen, setIsProfileOpen] = useState(false);
 
   const authState = useSelector((state) => state.user);
   const { user = null, isLoggedIn = false, loading = true } = authState || {};
@@ -100,7 +102,6 @@ export default function Header() {
                 </Link>
               </div>
             )}
-            {!user && <div>hello</div>}
           </div>
         </div>
 
