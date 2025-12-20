@@ -3,10 +3,12 @@
 import { useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useSelector } from "react-redux";
 
 export default function ProfileModal({ isOpen, onClose }) {
   const modalRef = useRef(null);
-
+  const authState = useSelector((state) => state.user);
+  const { user = null, isLoggedIn = false, loading = true } = authState || {};
   // Outside click close
   useEffect(() => {
     if (!isOpen) return;
@@ -24,7 +26,7 @@ export default function ProfileModal({ isOpen, onClose }) {
   if (!isOpen) return null;
 
   return (
-    <div className="absolute right-6 top-20 z-50">
+    <div className="absolute right-0 top-full mt-1 z-50">
       <div
         ref={modalRef}
         className="w-72 rounded-2xl border border-purple-600/40 bg-gradient-to-b from-[#1a0b2e] to-[#0b0418] p-4 shadow-2xl"
@@ -32,17 +34,17 @@ export default function ProfileModal({ isOpen, onClose }) {
         {/* Profile Info */}
         <div className="flex flex-col items-center text-center">
           <Image
-            src="https://images.unsplash.com/photo-1517841905240-472988babdf9"
+            src={user.profile_image_url}
             alt="profile"
             width={64}
             height={64}
             className="rounded-full border-2 border-purple-500 w-20 h-20 object-cover"
           />
-          <h3 className="mt-3 font-semibold text-white">Md Shoriful Islam</h3>
-          <p className="text-sm text-gray-400">Student ID: WEB10-1166</p>
+          <h3 className="mt-3 font-semibold text-white">{user.name}</h3>
+          <p className="text-sm text-gray-400">Student Role: {user.sdg_role}</p>
 
           <Link
-            href="/profile"
+            href="/dashboard/profile"
             className="mt-3 rounded-lg bg-purple-600 px-4 py-2 text-sm font-medium text-white hover:bg-purple-700"
             onClick={onClose}
           >
@@ -56,21 +58,22 @@ export default function ProfileModal({ isOpen, onClose }) {
         {/* Menu */}
         <ul className="space-y-1 text-sm">
           {[
-            "My Classes",
-            "Bookmark",
-            "Helpdesk",
-            "Ersa Chat Assistant",
-            "Actionable Dashboard",
-            "Leaderboard",
-            "Announcement",
-            "Conceptual Sessions",
+            "Dashboard",
+            "My Profile",
+            "My Quizzes",
+            "My Certificates",
+            "Payment History",
             "Settings",
           ].map((item) => (
             <li
               key={item}
               className="cursor-pointer rounded-lg px-3 py-2 text-gray-300 hover:bg-purple-700/20 hover:text-white"
             >
-              {item}
+              <Link
+                href={`/dashboard/${item.toLowerCase().replace(/ /g, "-")}`}
+              >
+                {item}
+              </Link>
             </li>
           ))}
         </ul>

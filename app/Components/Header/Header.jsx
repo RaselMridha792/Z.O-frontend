@@ -7,6 +7,7 @@ import logo from "../../../public/src/SiteLogo.png";
 import Image from "next/image";
 import { FaSignInAlt, FaUserPlus } from "react-icons/fa";
 import { useSelector } from "react-redux";
+import ProfileModal from "../ProfileModal/ProfileModal";
 
 const navItems = [
   { title: "Home", url: "/" },
@@ -28,15 +29,15 @@ export default function Header() {
   console.log("User Profile Data:", user);
   console.log("Loading State:", loading);
   // const user = false;
-  // console.log("user", user);
-
+  // console.log("user", user?.email);
+  const email = user?.email;
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
   return (
-    <header className="sticky top-0 left-0 right-0 z-50 w-full  bg-white backdrop-blur-md border-b border-gray-200 shadow-sm">
-      <div className="container max-w-7xl mx-auto p-5">
+    <header className="sticky top-0 left-0 right-0 z-50 w-full  bg-white backdrop-blur-md border-b border-gray-200 shadow-sm ">
+      <div className="relative container max-w-7xl mx-auto p-5  border-red-400">
         <div className="container mx-auto">
           <div className="flex items-center justify-between h-16 lg:h-20">
             {/* Logo and Mobile Menu Toggle */}
@@ -85,23 +86,63 @@ export default function Header() {
               </button>
             </div>
 
-            {/* Desktop Buttons */}
-            {!user && (
-              <div className="hidden lg:flex items-center gap-4">
-                <Link
-                  href={"/login"}
-                  className="px-5 py-1.5 flex justify-center items-center gap-2 text-lg text-gray-800 font-bold border border-primary rounded-sm hover:bg-primary hover:text-white transition-all"
-                >
-                  <FaSignInAlt size={18} /> Login
-                </Link>
-                <Link
-                  href={"/registration"}
-                  className="px-5 py-1.5 text-lg flex justify-center items-center gap-2 text-white font-bold border border-primary rounded-sm bg-primary hover:bg-white hover:text-primary transition-all"
-                >
-                  <FaUserPlus size={18} /> Register
-                </Link>
-              </div>
-            )}
+            <div>
+              {email ? (
+                <div className="mt-4 flex items-center gap-4 lg:mt-0">
+                  {!isProfileOpen && (
+                    <button
+                      onClick={() => setIsProfileOpen((prev) => !prev)}
+                      className="flex items-center focus:outline-none cursor-pointer"
+                    >
+                      <div className="w-14 h-14 overflow-hidden border-2 border-purple-500 rounded-full">
+                        <Image
+                          src={user.profile_image_url}
+                          alt="avatar"
+                          width={200}
+                          height={200}
+                          quality={100}
+                          priority
+                          className="object-cover h-full w-full"
+                        />
+                      </div>
+                    </button>
+                  )}
+                  {isProfileOpen && (
+                    <button
+                      onClose={() => setIsProfileOpen(false)}
+                      className="flex items-center focus:outline-none cursor-pointer"
+                    >
+                      <div className="w-14 h-14 overflow-hidden border-2 border-purple-500 rounded-full">
+                        <Image
+                          src={user.profile_image_url}
+                          alt="avatar"
+                          width={200}
+                          height={200}
+                          quality={100}
+                          priority
+                          className="object-cover h-full w-full"
+                        />
+                      </div>
+                    </button>
+                  )}
+                </div>
+              ) : (
+                <div className="hidden lg:flex items-center gap-4">
+                  <Link
+                    href={"/login"}
+                    className="px-5 py-1.5 flex justify-center items-center gap-2 text-lg text-gray-800 font-bold border border-primary rounded-sm hover:bg-primary hover:text-white transition-all"
+                  >
+                    <FaSignInAlt size={18} /> Login
+                  </Link>
+                  <Link
+                    href={"/registration"}
+                    className="px-5 py-1.5 text-lg flex justify-center items-center gap-2 text-white font-bold border border-primary rounded-sm bg-primary hover:bg-white hover:text-primary transition-all"
+                  >
+                    <FaUserPlus size={18} /> Register
+                  </Link>
+                </div>
+              )}
+            </div>
           </div>
         </div>
 
@@ -143,6 +184,10 @@ export default function Header() {
             </div>
           </div>
         </div>
+        <ProfileModal
+          isOpen={isProfileOpen}
+          onClose={() => setIsProfileOpen(false)}
+        />
       </div>
     </header>
   );
