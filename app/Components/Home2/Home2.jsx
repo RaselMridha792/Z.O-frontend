@@ -43,6 +43,7 @@ import {
 import EventGallery from "../EventGallery/EventGallery"
 import JurySection from "../JuryCard/Jury"
 import HeroSection from "../HeroSection/Hero"
+import TimelineEvent from "../Timeline/TimelineEvent"
 
 export default function HomePage() {
   const [animatedSections, setAnimatedSections] = useState(new Set())
@@ -505,91 +506,9 @@ export default function HomePage() {
 
 
       {/* Timeline */}
-      <section className="py-20 p-5 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4">
-          <h2
-            data-section="timeline-title"
-            className={`text-4xl md:text-5xl font-bold text-center text-gray-900 mb-4 transition-all duration-1000 ${
-              animatedSections.has("timeline-title") ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-            }`}
-          >
-            Time <span className="text-pink-500">Line</span>
-          </h2>
-          <p className="text-center text-gray-600 text-lg mb-16 max-w-3xl mx-auto">
-            Important dates and milestones for the competition
-          </p>
-
-          <div className="relative">
-            {/* Center Line */}
-            <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-pink-500 via-purple-500 to-indigo-500 hidden lg:block" />
-
-            <div className="space-y-12">
-              {[
-                {
-                  date: "March 15, 2024",
-                  title: "Registration Deadline",
-                  description: "Last day to register for the competition",
-                  side: "left",
-                },
-                {
-                  date: "April 1, 2024",
-                  title: "1st Round MCQ Test",
-                  description: "Multiple choice screening test",
-                  side: "right",
-                },
-                {
-                  date: "April 20, 2024",
-                  title: "2nd Round Video Contest",
-                  description: "Submit your creative video entry",
-                  side: "left",
-                },
-                {
-                  date: "May 10, 2024",
-                  title: "3rd Round Written Analysis",
-                  description: "In-depth written evaluation",
-                  side: "right",
-                },
-                {
-                  date: "June 1, 2024",
-                  title: "Grand Finale",
-                  description: "Final competition and award ceremony",
-                  side: "left",
-                },
-              ].map((event, index) => (
-                <div
-                  key={index}
-                  data-section={`timeline-${index}`}
-                  className={`relative flex items-center ${event.side === "left" ? "lg:justify-start" : "lg:justify-end"}`}
-                >
-                  <div
-                    className={`w-full lg:w-5/12 transition-all duration-1000 ${
-                      animatedSections.has(`timeline-${index}`)
-                        ? "opacity-100 translate-x-0"
-                        : event.side === "left"
-                          ? "opacity-0 -translate-x-8"
-                          : "opacity-0 translate-x-8"
-                    }`}
-                    style={{ transitionDelay: `${index * 150}ms` }}
-                  >
-                    <div className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105 border-l-4 border-pink-500">
-                      <div className="flex items-center gap-4 mb-3">
-                        <div className="w-12 h-12 bg-pink-500 rounded-full flex items-center justify-center text-white font-bold">
-                          {index + 1}
-                        </div>
-                        <div className="text-sm text-pink-500 font-semibold">{event.date}</div>
-                      </div>
-                      <h3 className="text-xl font-bold text-gray-900 mb-2">{event.title}</h3>
-                      <p className="text-gray-600">{event.description}</p>
-                    </div>
-                  </div>
-
-                  {/* Center Dot */}
-                  <div className="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-pink-500 rounded-full border-4 border-gray-50 hidden lg:block" />
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
+      <section className="px-5 py-20">
+        
+       <TimelineEvent></TimelineEvent>
       </section>
 
 
