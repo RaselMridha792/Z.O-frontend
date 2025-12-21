@@ -25,24 +25,24 @@ export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
 
-  // Reference to the entire profile section (Button + Modal)
   const profileAreaRef = useRef(null);
 
   const authState = useSelector((state) => state.user);
   const { user = null, isLoggedIn = false } = authState || {};
   const email = user?.email;
 
-  // Handle header background change on scroll
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Global click listener to close modal when clicking anywhere on the display
+  useEffect(() => {
+    setIsMobileMenuOpen(false);
+  }, [pathname]);
+
   useEffect(() => {
     const handleGlobalClick = (event) => {
-      // If the modal is open and the click is NOT inside the profileAreaRef
       if (
         isProfileOpen &&
         profileAreaRef.current &&
@@ -51,13 +51,8 @@ export default function Header() {
         setIsProfileOpen(false);
       }
     };
-
-    // Attach to window for the most reliable global detection
     window.addEventListener("click", handleGlobalClick);
-
-    return () => {
-      window.removeEventListener("click", handleGlobalClick);
-    };
+    return () => window.removeEventListener("click", handleGlobalClick);
   }, [isProfileOpen]);
 
   const filteredNavItems = navItems.filter((item) => {
@@ -136,12 +131,9 @@ export default function Header() {
                       <FaUserCircle className="w-full h-full text-gray-300 bg-gray-100" />
                     )}
                   </div>
-                  <span className="absolute bottom-0.5 right-0.5 w-3.5 h-3.5 bg-green-500 border-2 border-white rounded-full shadow-sm"></span>
                 </button>
-
-                {/* Profile Modal Dropdown */}
                 {isProfileOpen && (
-                  <div className="absolute right-0 mt-3 w-72 origin-top-right z-[100] animate-in fade-in zoom-in duration-200">
+                  <div className="absolute right-0 mt-3 w-72 z-[100] animate-in fade-in zoom-in duration-200">
                     <ProfileModal
                       isOpen={isProfileOpen}
                       onClose={() => setIsProfileOpen(false)}
@@ -153,7 +145,7 @@ export default function Header() {
               <div className="hidden lg:flex items-center gap-3">
                 <Link
                   href="/login"
-                  className="px-6 py-2.5 text-sm font-bold text-gray-700 hover:text-white hover:bg-primary hover:rounded-full hover:shadow-lg transition-all ease-in-out duration-300"
+                  className="px-6 py-2.5 text-sm font-bold text-gray-700 hover:text-white hover:bg-primary hover:rounded-full transition-all"
                 >
                   Login
                 </Link>
@@ -166,10 +158,10 @@ export default function Header() {
               </div>
             )}
 
-            {/* Mobile Toggle */}
+            {/* Mobile Toggle Button */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="lg:hidden p-2 rounded-xl bg-gray-50 text-gray-700"
+              className="lg:hidden p-2 rounded-xl bg-gray-50 text-gray-700 focus:outline-none"
             >
               {isMobileMenuOpen ? (
                 <AiOutlineClose size={24} />
@@ -180,6 +172,43 @@ export default function Header() {
           </div>
         </div>
       </div>
+
+      {isMobileMenuOpen && (
+        <div className="lg:hidden absolute top-full left-0 w-full bg-white border-t border-gray-100 shadow-xl z-[90] animate-in slide-in-from-top duration-300">
+          <nav className="flex flex-col p-4 space-y-4">
+            {filteredNavItems.map((item) => (
+              <Link
+                key={item.title}
+                href={item.url}
+                className={`text-base font-bold py-2 px-4 rounded-lg transition-colors ${
+                  pathname === item.url
+                    ? "bg-primary/10 text-primary"
+                    : "text-gray-600 hover:bg-gray-50"
+                }`}
+              >
+                {item.title}
+              </Link>
+            ))}
+
+            {!email && (
+              <div className="flex flex-col gap-3 pt-4 border-t border-gray-100">
+                <Link
+                  href="/login"
+                  className="w-full py-3 text-center text-sm font-bold text-gray-700 bg-gray-50 rounded-xl"
+                >
+                  Login
+                </Link>
+                <Link
+                  href="/registration"
+                  className="w-full py-3 text-center text-sm font-bold text-white bg-primary rounded-xl"
+                >
+                  Register
+                </Link>
+              </div>
+            )}
+          </nav>
+        </div>
+      )}
     </header>
   );
 }
