@@ -299,24 +299,7 @@ export default function ZeroOlympiad() {
         </div>
       </section>
 
-      {/* --- 9. FINAL CTA --- */}
-      {/* <section className="py-32 relative overflow-hidden bg-white">
-        <div className="max-w-7xl mx-auto px-6 relative z-10 text-center">
-          <div className="bg-indigo-600 p-12 lg:p-32 rounded-[4rem] text-white shadow-2xl relative overflow-hidden group">
-            <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-white/10 via-transparent to-transparent pointer-events-none" />
-            <h2 className="text-4xl md:text-7xl font-black italic tracking-tighter mb-12 relative z-10">
-              Ready to write history <br/> or just read it?
-            </h2>
-            <p className="text-xl md:text-2xl text-indigo-100 font-light mb-12 max-w-2xl mx-auto opacity-80">
-              Registration for the 2025 Global Cohort is now open. Join the world's most ambitious youth-led movement.
-            </p>
-            <button className="bg-white text-indigo-600 px-12 py-6 rounded-2xl font-black text-xl hover:scale-105 active:scale-95 transition-all shadow-2xl shadow-black/20 hover:shadow-white/20">
-              REGISTER FOR ZERO OLYMPIAD
-            </button>
-          </div>
-        </div>
-      </section> */}
-
+    
       
 
       {/* --- ANIMATIONS --- */}
