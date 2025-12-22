@@ -12,7 +12,7 @@ import ProfileModal from "../ProfileModal/ProfileModal";
 
 const navItems = [
   { title: "Home", url: "/" },
-   { title: "About Us", url: "/about" },
+  { title: "About Us", url: "/about" },
   { title: "About Faatiha", url: "/aboutFaatiha" },
   { title: "Leaderboard", url: "/leaderboard" },
   { title: "FAQ", url: "/faq" },
@@ -61,13 +61,12 @@ export default function Header() {
     return true;
   });
 
+  const toggleMobileMenu = () => setIsMobileMenuOpen((prev) => !prev);
+
   return (
     <header
-      className={`sticky top-0 left-0 right-0 z-50 w-full transition-all duration-300 ${
-        scrolled
-          ? "bg-white/90 backdrop-blur-md shadow-md py-2"
-          : "bg-white py-4"
-      }`}
+      className={`sticky top-0 left-0 right-0 z-50 w-full transition-all duration-300 ${scrolled ? "bg-white/90 backdrop-blur-md shadow-md py-2" : "bg-white py-4"
+        }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
@@ -97,15 +96,13 @@ export default function Header() {
               <Link
                 key={item.title}
                 href={item.url}
-                className={`relative text-sm font-bold transition-colors duration-300 hover:text-primary ${
-                  pathname === item.url ? "text-primary" : "text-gray-600"
-                } group`}
+                className={`relative text-sm font-bold transition-colors duration-300 hover:text-primary ${pathname === item.url ? "text-primary" : "text-gray-600"
+                  } group`}
               >
                 {item.title}
                 <span
-                  className={`absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full ${
-                    pathname === item.url ? "w-full" : ""
-                  }`}
+                  className={`absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full ${pathname === item.url ? "w-full" : ""
+                    }`}
                 ></span>
               </Link>
             ))}
@@ -159,79 +156,16 @@ export default function Header() {
               </div>
             )}
 
-              {/* Mobile Menu Toggle */}
-              <button
-                onClick={toggleMobileMenu}
-                className="lg:hidden p-2 text-gray-700 hover:text-primary transition-colors"
-                aria-label="Toggle menu"
-              >
-                {isMobileMenuOpen ? (
-                  <AiOutlineClose className="w-6 h-6" />
-                ) : (
-                  <AiOutlineMenu className="w-6 h-6" />
-                )}
-              </button>
-            </div>
-
-            <div>
-              {email ? (
-                <div className="mt-0 flex items-center gap-4 lg:mt-0">
-                  {!isProfileOpen && (
-                    <button
-                      onClick={() => setIsProfileOpen((prev) => !prev)}
-                      className="flex items-center focus:outline-none cursor-pointer"
-                    >
-                      <div className="w-14 h-14 overflow-hidden border-2 border-purple-500 rounded-full">
-                        {/* <Image
-                          src={user.profile_image_url || <FaUserCircle size={80}></FaUserCircle>}
-                          alt="avatar"
-                          width={200}
-                          height={200}
-                          quality={100}
-                          priority
-                          className="object-cover h-full w-full"
-                        /> */}
-                        {user.profile_image_url ? (
-                          <Image
-                            src={user.profile_image_url || "no image"}
-                            alt="Profile"
-                            width={112}
-                            height={112}
-                            className="w-full h-full object-cover"
-                          />
-                        ) : (
-                          <div className="flex h-full items-center justify-center text-gray-400 font-medium">
-                            <FaUserCircle size={100}></FaUserCircle>
-                          </div>
-                        )}
-                      </div>
-                    </button>
-                  )}
-                  {isProfileOpen && (
-                    <button
-                      onClose={() => setIsProfileOpen(false)}
-                      className="flex items-center focus:outline-none cursor-pointer"
-                    >
-                      <div className="w-14 h-14 overflow-hidden border-2 border-purple-500 rounded-full">
-                        {user.profile_image_url ? (
-                          <Image
-                            src={user.profile_image_url}
-                            alt="Profile"
-                            width={112}
-                            height={112}
-                            className="w-full h-full rounded-full object-cover"
-                          />
-                        ) : (
-                          <div className="flex h-full items-center justify-center text-gray-400 font-medium">
-                            <FaUserCircle size={100}></FaUserCircle>
-                          </div>
-                        )}
-                      </div>
-                    </button>
-                  )}
-                </div>
+            {/* Mobile Menu Toggle */}
+            <button
+              onClick={toggleMobileMenu}
+              className="lg:hidden p-2 text-gray-700 hover:text-primary transition-colors"
+              aria-label="Toggle menu"
+            >
+              {isMobileMenuOpen ? (
+                <AiOutlineClose className="w-6 h-6" />
               ) : (
-                <AiOutlineMenu size={24} className="cursor-pointer" />
+                <AiOutlineMenu className="w-6 h-6" />
               )}
             </button>
           </div>
@@ -245,11 +179,10 @@ export default function Header() {
               <Link
                 key={item.title}
                 href={item.url}
-                className={`text-base font-bold py-2 px-4 rounded-lg transition-colors ${
-                  pathname === item.url
+                className={`text-base font-bold py-2 px-4 rounded-lg transition-colors ${pathname === item.url
                     ? "bg-primary/10 text-primary"
                     : "text-gray-600 hover:bg-gray-50"
-                }`}
+                  }`}
               >
                 {item.title}
               </Link>
