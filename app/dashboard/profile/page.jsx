@@ -13,8 +13,6 @@ const ProfilePage = () => {
   const authState = useSelector((state) => state.user);
   const loading = authState?.loading;
   const user = useSelector((state) => state.auth.user);
-  console.log("user data", user);
-  console.log(user, loading);
   if (loading)
     return <div className="p-10 text-center">Loading Profile...</div>;
   if (!user)
@@ -26,7 +24,7 @@ const ProfilePage = () => {
 
   return (
     <main className="p-4 lg:p-10 bg-gray-50 min-h-screen">
-      <div className="max-w-4xl mx-auto space-y-6">
+      <div className="w-full mx-auto space-y-6">
         <div className="bg-white p-6 rounded-2xl shadow-sm border border-blue-50 flex flex-col md:flex-row justify-between items-center gap-6">
           <div className="flex items-center gap-6">
             {user.profile_image_url ? (
